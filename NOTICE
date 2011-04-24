@@ -1,0 +1,5 @@
+Webhejj Commons java utility library
+Copyright 2011 Gergely Nagy <greg@webhejj.hu>
+
+This library contains an implementation of the Levenshtein word distance
+posted to http://www.javalobby.org/java/forums/t15908.html
