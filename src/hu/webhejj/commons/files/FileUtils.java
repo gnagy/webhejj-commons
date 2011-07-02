@@ -95,16 +95,12 @@ public class FileUtils {
 			return false;
 		}
 		
-		if(file.isFile()) {
-			file.delete();
-		
-		} else {
+		if(file.isDirectory()) {
 			for(File child: file.listFiles()) {
 				deleteRecursive(child);
 			}
 		}
-		
-		return true;
+		return file.delete();
 	}
 	
 	/** save data from the specified input stream to file */
