@@ -36,11 +36,17 @@ public class FsWalker extends TreeWalker<File> {
 			if(node.isFile()) {
 				return null;
 			}
-			File[] children = node.listFiles();
-			if(comparator != null) {
-				Arrays.sort(children, comparator);
+			if(node.isDirectory()) {
+				File[] children = node.listFiles();
+				if(children == null) {
+					throw new RuntimeException("Could not get children of " + node);
+				}
+				if(comparator != null) {
+					Arrays.sort(children, comparator);
+				}
+				return Arrays.asList(children);
 			}
-			return Arrays.asList(children);
+			return null;
 		}
 	}	
 	
