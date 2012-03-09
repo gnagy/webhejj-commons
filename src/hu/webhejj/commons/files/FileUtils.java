@@ -145,4 +145,14 @@ public class FileUtils {
 			}
 		}
 	}
+	
+	/** @return free space available on the partition for the specified file */
+	public static long getFreeSpace(File file) {
+		
+		long free = file.getFreeSpace();
+		while(free == 0) {
+			file = file.getParentFile();
+		}
+		return free;
+	}
 }
