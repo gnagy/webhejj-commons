@@ -1,5 +1,6 @@
 package hu.webhejj.commons.diff;
 
+import hu.webhejj.commons.NopProgressMonitor;
 import hu.webhejj.commons.files.FSIterable;
 
 import java.io.File;
@@ -9,10 +10,14 @@ public class DiffUtils {
 
 	/** @return Differences in the two directories, recursively */
 	public static List<Difference<File>> diffFilesLastModified(File left, File right) {
-		return new SortedIterableDifferentiator<File>().diff(
+		DiffCollector<File> collector = new DiffCollector<File>();
+		new SortedIterableDifferentiator<File>().diff(
 				new FSIterable(left),
 				new FSIterable(right),
-				FileLastModifiedDiffComparator.INSTANCE);
+				FileLastModifiedDiffComparator.INSTANCE,
+				collector,
+				NopProgressMonitor.INSTANCE);
+		return collector.getDifferences();
 	}
 	
 	/** prints to stdout all differences on a new line */

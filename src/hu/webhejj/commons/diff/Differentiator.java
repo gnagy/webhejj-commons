@@ -8,15 +8,15 @@
  */
 package hu.webhejj.commons.diff;
 
-import java.util.List;
+import hu.webhejj.commons.ProgressMonitor;
 
 /**
- * Interface implementations that can perform a diff operation on iterables
+ * Interface for implementations that can perform a diff operation on iterables
  *
  * @param <T> type of differentiated objects
  */
 public interface Differentiator<T> {
 
-	public List<Difference<T>> diff(Iterable<T> lefts, Iterable<T> rights, DiffComparator<T> comparator);
+	public void diff(Iterable<T> lefts, Iterable<T> rights, DiffComparator<T> comparator, DiffHandler<T> diffHandler, ProgressMonitor monitor);
 
 }

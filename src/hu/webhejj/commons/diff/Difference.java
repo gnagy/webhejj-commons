@@ -63,6 +63,6 @@ public class Difference<T> {
 	
 	@Override
 	public String toString() {
-		return left + " - " + type + " - " + right;
+		return type + "\t" + left + "\t" + right;
 	}
 }

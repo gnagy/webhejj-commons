@@ -8,9 +8,9 @@
  */
 package hu.webhejj.commons.diff;
 
-import java.util.ArrayList;
+import hu.webhejj.commons.ProgressMonitor;
+
 import java.util.Iterator;
-import java.util.List;
 
 /**
  * An efficient differentiator that can compare iterables that contain elements in ascending order
@@ -20,43 +20,65 @@ import java.util.List;
  */
 public class SortedIterableDifferentiator<T> implements Differentiator<T> {
 
-	public List<Difference<T>> diff(Iterable<T> lefts, Iterable<T> rights, DiffComparator<T> comparator) {
-		
-		List<Difference<T>> differences = new ArrayList<Difference<T>>();
+	public void diff(Iterable<T> lefts, Iterable<T> rights, DiffComparator<T> comparator, DiffHandler<T> diffHandler, ProgressMonitor monitor) {
 
+		if(monitor.isCanceled()) {
+			return;
+		}
+		
 		Iterator<T> li = lefts.iterator();
 		Iterator<T> ri = rights.iterator();
 
 		T left = null;
 		T right = null;
 		while(li.hasNext() || ri.hasNext()) {
-			if(left == null && li.hasNext()) {
-				left = li.next();
+			
+			if(monitor.isCanceled()) {
+				return;
 			}
-			if(right == null && ri.hasNext()) {
-				right = ri.next();
+			
+			if(left == null) {
+				if(li.hasNext()) {
+					left = li.next();
+				} else {
+					while(ri.hasNext()) {
+						diffHandler.handle(null, ri.next(), Difference.Type.ADDED);
+					}
+					return;
+				}
 			}
+			if(right == null) {
+				if(ri.hasNext()) {
+					right = ri.next();
+				} else {
+					// the check above already removed a left from the iterator
+					diffHandler.handle(left, null, Difference.Type.DELETED);
+					while(li.hasNext()) {
+						diffHandler.handle(li.next(), null, Difference.Type.DELETED);
+					}
+					return;
+				}
+			}
+
 			
 			int diff = comparator.compare(left, right);
 			if(diff == 0) {
 				if(comparator.equals(left, right)) {
-					differences.add(new Difference<T>(left, right, Difference.Type.UNCHANGED));
+					diffHandler.handle(left, right, Difference.Type.UNCHANGED);
 				} else {
-					differences.add(new Difference<T>(left, right, Difference.Type.CHANGED));
+					diffHandler.handle(left, right, Difference.Type.CHANGED);
 				}
 				left = null;
 				right = null;
 			
 			} else if(diff < 0) {
-				differences.add(new Difference<T>(left, right, Difference.Type.DELETED));
+				diffHandler.handle(left, null, Difference.Type.DELETED);
 				left = null;
 			
 			} else {
-				differences.add(new Difference<T>(left, right, Difference.Type.ADDED));
+				diffHandler.handle(null, right, Difference.Type.ADDED);
 				right = null;
 			}
 		}
-		
-		return differences;
 	}
 }
