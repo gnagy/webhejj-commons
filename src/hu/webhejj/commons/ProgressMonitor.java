@@ -20,4 +20,6 @@ public interface ProgressMonitor {
 	public void done();
 
 	public void cancel();
+	
+	public boolean isCanceled();
 }

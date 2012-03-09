@@ -19,6 +19,7 @@ public class PrintingProgressMonitor implements ProgressMonitor {
 	private int max;
 	private int progress;
 	private PrintStream out;
+	private boolean isCanceled = false;
 	
 	public PrintingProgressMonitor(PrintStream out) {
 		this.out = out;
@@ -33,6 +34,7 @@ public class PrintingProgressMonitor implements ProgressMonitor {
 	public void cancel() {
 		out.print("Canceled ");
 		out.println(name);
+		isCanceled = true;
 		progress = 0;
 		max = 0;
 	}
@@ -50,5 +52,10 @@ public class PrintingProgressMonitor implements ProgressMonitor {
 		out.print(": ");
 		out.print(percent);
 		out.println("%");
+	}
+	
+	@Override
+	public boolean isCanceled() {
+		return isCanceled;
 	}
 }
