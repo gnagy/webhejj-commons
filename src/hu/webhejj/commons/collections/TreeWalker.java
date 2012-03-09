@@ -8,6 +8,8 @@
  */
 package hu.webhejj.commons.collections;
 
+import hu.webhejj.commons.ProgressMonitor;
+
 /**
  * Takes a TreeVisitor and a ChildProvider and walks a tree starting from the specified
  * root node.
@@ -45,18 +47,26 @@ public class TreeWalker<T> {
 
 	/** Start walking the tree starting from the specified node */
 	public void walk(T root) {
-		doWalk(root);
+		doWalk(root, null);
 	}
 	
-	protected void doWalk(T node) {
+	public void walk(T root, ProgressMonitor monitor) {
+		doWalk(root, monitor);
+	}
+	
+	protected void doWalk(T node, ProgressMonitor monitor) {
 		
 		if(visitor.entering(node)) {
 			Iterable<T> childIterable = childProvider.getChildren(node);
 			if(childIterable != null) {
 				for(T child: childIterable) {
-					doWalk(child);
+					if(monitor != null && monitor.isCanceled()) {
+						return;
+					}
+					doWalk(child, monitor);
 				}
 			}
+			visitor.leaving(node);
 		}
 	}
 }
