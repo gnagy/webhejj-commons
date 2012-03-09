@@ -9,7 +9,10 @@
 package hu.webhejj.commons.xml;
 
 import java.io.IOException;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.io.Writer;
+import java.nio.charset.Charset;
 import java.util.Stack;
 
 /**
@@ -24,8 +27,8 @@ public class SimpleXmlWriter implements XmlWriter {
 
 	private Writer writer;
 	
-	public SimpleXmlWriter(Writer writer) throws IOException {
-		this.writer = writer;
+	public SimpleXmlWriter(OutputStream os) throws IOException {
+		this.writer = new OutputStreamWriter(os, Charset.forName("UTF-8"));
 		
 		writer.write("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
 	}
@@ -69,10 +72,27 @@ public class SimpleXmlWriter implements XmlWriter {
 
 	public void writeAttribute(String name, String value) throws IOException {
 		writer.write(" ");
-		writer.write(name);
+		writeEscaped(name);
 		writer.write("=\"");
-		writer.write(value);
+		writeEscaped(value);
 		writer.write("\"");
+	}
+	
+	public void writeEscaped(String string) throws IOException {
+		if(string == null) {
+			return;
+		}
+		for(int i = 0; i < string.length(); i++) {
+			char c = string.charAt(i);
+			switch(c) {
+			case '<': writer.write("&lt;"); break;
+			case '>': writer.write("&gt;"); break;
+			case '&': writer.write("&amp;"); break;
+			case '"': writer.write("&quot;"); break;
+			case '\'': writer.write("&apos;"); break;
+			default: writer.write(c);
+			}
+		}
 	}
 	
 	public void close() throws IOException {
