@@ -20,21 +20,28 @@ public class TrieNode<T> {
 	private int tail;
 	private char[] keys;
 	private TrieNode<T>[] children;
-	
+	private T value;
+
 	@SuppressWarnings("unchecked")
 	public TrieNode(int size, T value) {
 		keys = new char[size];
 		children = new TrieNode[size];
 		tail = 0;
+		this.value = value;
 	}
-	
-	private T value;
 	
 	public T getValue() {
 		return value;
 	}
 	public void setValue(T value) {
 		this.value = value;
+	}
+	
+	public char[] getKeys() {
+		return keys;
+	}
+	public int getSize() {
+		return tail;
 	}
 	
 	@SuppressWarnings("unchecked")
