@@ -88,6 +88,26 @@ public class CompareUtils {
 		}
 	}
 	
+	/** @return true if any of <code>objects</code> is empty, false otherwise */
+	public static boolean isAnyEmpty(Object... objects) {
+		for(Object object: objects) {
+			if(isEmpty(object)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	/** @return true if all of <code>objects</code> are empty, false otherwise */
+	public static boolean isAllEmpty(Object... objects) {
+		for(Object object: objects) {
+			if(!isEmpty(object)) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
 	/** null-save object compare */
 	public static <T extends Comparable<T>> int compare(T o1, T o2) {
 		if(o1 == null) {
