@@ -1,8 +1,8 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Bitbucket
+Bundle-Name: Webhejj-Commons
 Bundle-SymbolicName: hu.webhejj.commons
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 1.1.0.qualifier
 Bundle-Vendor: webhejj.hu
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: hu.webhejj.commons,
