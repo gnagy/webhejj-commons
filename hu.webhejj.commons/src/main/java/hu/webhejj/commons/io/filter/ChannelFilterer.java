@@ -64,6 +64,12 @@ public class ChannelFilterer {
 				ChannelFilterer.reinitBuffer(buffer, limit);
 			}
 		}
+		
+		try {
+			channel.close();
+		} catch (IOException e) {
+			throw new RuntimeException("Error while closing channel: ", e);
+		}
 	}
 	
 	protected static void reinitBuffer(ByteBuffer buffer, int limit) {
