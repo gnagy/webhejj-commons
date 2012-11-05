@@ -17,6 +17,5 @@ import hu.webhejj.commons.ProgressMonitor;
  */
 public interface Differentiator<T> {
 
-	public void diff(Iterable<T> lefts, Iterable<T> rights, DiffComparator<T> comparator, DiffHandler<T> diffHandler, ProgressMonitor monitor);
-
+	void diff(Iterable<T> lefts, Iterable<T> rights, DiffComparator<T> comparator, DiffHandler<T> diffHandler, ProgressMonitor monitor);
 }

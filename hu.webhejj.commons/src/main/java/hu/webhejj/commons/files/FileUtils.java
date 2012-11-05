@@ -121,7 +121,7 @@ public class FileUtils {
 		Asserts.notNullParameter("os", os);
 		
 		try {
-			byte buf[] = new byte[1024];
+			byte[] buf = new byte[1024];
 			int len = 0;
 			
 			while((len = is.read(buf)) > 0) {

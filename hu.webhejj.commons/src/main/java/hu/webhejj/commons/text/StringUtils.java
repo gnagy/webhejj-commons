@@ -90,10 +90,8 @@ public class StringUtils {
 
 		int[][] d = new int[n + 1][m + 1];
 
-		for (int i = 0; i <= n; d[i][0] = i++)
-			;
-		for (int j = 1; j <= m; d[0][j] = j++)
-			;
+		for (int i = 0; i <= n; d[i][0] = i++) {};
+		for (int j = 1; j <= m; d[0][j] = j++) {};
 
 		for (int i = 1; i <= n; i++) {
 			char sc = s.charAt(i - 1);
@@ -226,7 +224,7 @@ public class StringUtils {
 			return new String[0];
 		}
 		int chunkCount = string.length() / length + 1;
-		String chunks[] = new String[chunkCount];
+		String[] chunks = new String[chunkCount];
 
 		for(int i = 0; i < chunkCount; i++) {
 			chunks[i] = string.substring(i * length, Math.min(string.length(), (i + 1) * length));

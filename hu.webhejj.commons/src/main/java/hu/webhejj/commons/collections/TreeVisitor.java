@@ -21,12 +21,12 @@ public interface TreeVisitor<T> {
 	 * @param node node being visited
 	 * @return true if this node's children should be visited, false otherwise
 	 */
-	public boolean entering(T node);
+	boolean entering(T node);
 	
 	/**
 	 * Callback after a node and all its children were visited.
 	 * 
 	 * @param node node being left
 	 */
-	public void leaving(T node);
+	void leaving(T node);
 }

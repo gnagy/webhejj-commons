@@ -16,6 +16,6 @@ import java.nio.ByteBuffer;
  */
 public interface ByteBufferFilter {
 
-	public void reset();
-	public void process(ByteBuffer buffer);
+	void reset();
+	void process(ByteBuffer buffer);
 }

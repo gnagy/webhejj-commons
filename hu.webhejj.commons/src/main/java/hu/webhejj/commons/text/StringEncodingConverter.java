@@ -16,9 +16,9 @@ import java.io.UnsupportedEncodingException;
  */
 public class StringEncodingConverter {
 
-	public String from;
-	public String to;
-	boolean nop;
+	private String from;
+	private String to;
+	private boolean nop;
 	
 	
 	/** construct a converter from the specified encoding to the specified encoding */

@@ -54,7 +54,7 @@ public class ArrayUtils {
 			return new int[] {value};
 		}
 		
-		int insertionPoint = - java.util.Arrays.binarySearch(a, value) - 1;
+		int insertionPoint = -java.util.Arrays.binarySearch(a, value) - 1;
 		if(insertionPoint < 0) {
 			throw new IllegalArgumentException(String.format("Element %d already exists in array", value));
 		}
@@ -134,7 +134,7 @@ public class ArrayUtils {
 			return new char[] {value};
 		}
 		
-		int insertionPochar = - java.util.Arrays.binarySearch(a, value) - 1;
+		int insertionPochar = -java.util.Arrays.binarySearch(a, value) - 1;
 		if(insertionPochar < 0) {
 			throw new IllegalArgumentException(String.format("Element %d already exists in array", value));
 		}

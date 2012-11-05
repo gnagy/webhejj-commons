@@ -13,13 +13,13 @@ package hu.webhejj.commons;
  */
 public interface ProgressMonitor {
 
-	public void begin(String name, int max);
+	void begin(String name, int max);
 	
-	public void progress(int amount);
+	void progress(int amount);
 	
-	public void done();
+	void done();
 
-	public void cancel();
+	void cancel();
 	
-	public boolean isCanceled();
+	boolean isCanceled();
 }

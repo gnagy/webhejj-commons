@@ -25,8 +25,8 @@ public class Asserts {
 	public static void regexMatchesParameter(String parameterName,
 			Pattern pattern, CharSequence value) {
 		if(!pattern.matcher(value).matches()) {
-			throw new IllegalArgumentException("Parameter " + parameterName +
-					" does not match " + pattern + ", was: " + value);
+			throw new IllegalArgumentException("Parameter " + parameterName
+					+ " does not match " + pattern + ", was: " + value);
 		}
 	}
 }

@@ -23,13 +23,13 @@ public class TreeWalker<T> {
 	 *
 	 * @param <T> node type of the tree
 	 */
-	public static interface ChildProvider<T> {
+	public interface ChildProvider<T> {
 		
 		/**
 		 * @param node node to get children of
 		 * @return Iterable containing children, can be empty or null if leaf node
 		 */
-		public Iterable<T> getChildren(T node);
+		Iterable<T> getChildren(T node);
 	}
 	
 	private TreeVisitor<T> visitor;

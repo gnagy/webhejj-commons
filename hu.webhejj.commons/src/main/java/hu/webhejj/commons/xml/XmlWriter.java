@@ -15,9 +15,9 @@ import java.io.IOException;
  */
 public interface XmlWriter {
 
-	public void startElement(String name) throws IOException;
-	public void endElement() throws IOException;
+	void startElement(String name) throws IOException;
+	void endElement() throws IOException;
 	
-	public void writeAttribute(String name, String value) throws IOException;
+	void writeAttribute(String name, String value) throws IOException;
 	
 }

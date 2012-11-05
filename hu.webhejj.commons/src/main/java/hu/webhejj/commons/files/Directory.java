@@ -8,8 +8,6 @@
  */
 package hu.webhejj.commons.files;
 
-import hu.webhejj.commons.files.FileUtils;
-
 import java.io.File;
 
 /**

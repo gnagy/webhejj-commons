@@ -85,7 +85,7 @@ public class Hasher {
 		try {
 			dis = new DigestInputStream(is, digester);
 			byte[] buf = new byte[1024];
-			while(dis.read(buf) >= 0);
+			while(dis.read(buf) >= 0) {};
 			return dis.getMessageDigest().digest();
 		} finally {
 			if(dis != null) {
@@ -100,6 +100,7 @@ public class Hasher {
 	}
 	
 	private void reset(byte[] salt) {
+		this.salt = salt;
 		digester.reset();
 		if(salt != null) {
 			digester.update(salt);
