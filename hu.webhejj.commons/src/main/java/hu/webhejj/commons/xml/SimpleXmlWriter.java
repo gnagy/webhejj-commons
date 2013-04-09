@@ -113,4 +113,14 @@ public class SimpleXmlWriter implements XmlWriter {
 			}
 		}
 	}
+
+	@Override
+	public void writeText(String text) throws IOException {
+		if(isOpen) {
+			writer.write(">");
+			isOpen = false;
+			isLeaf = true;
+		}
+		writeEscaped(text);
+	}
 }

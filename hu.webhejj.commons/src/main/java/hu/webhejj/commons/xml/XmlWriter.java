@@ -19,5 +19,5 @@ public interface XmlWriter {
 	void endElement() throws IOException;
 	
 	void writeAttribute(String name, String value) throws IOException;
-	
+	void writeText(String text) throws IOException;
 }
