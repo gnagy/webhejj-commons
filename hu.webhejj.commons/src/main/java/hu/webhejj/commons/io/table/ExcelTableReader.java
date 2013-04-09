@@ -80,6 +80,10 @@ public class ExcelTableReader {
 			return values;
 		}
 		
+		public String[] getValues() {
+			return getValues(String.class);
+		}
+		
 		public boolean matches(Pattern pattern) {
 			for(int i = 0; i <= getColumnCount(); i++) {
 				String value = getValue(i, String.class);
@@ -119,7 +123,13 @@ public class ExcelTableReader {
 		workbook.setActiveSheet(index);
 	}
 	
+	public String getSheetName(int index) {
+		return workbook.getSheetName(index);
+	}
 
+	public int getSheetCount() {
+		return workbook.getNumberOfSheets();
+	}
 	
 	public int getRowCount() {
 		int i = sheet.getLastRowNum();
