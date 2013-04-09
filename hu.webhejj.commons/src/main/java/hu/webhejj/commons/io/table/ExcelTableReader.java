@@ -39,7 +39,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 public class ExcelTableReader {
 	
 	/** A row in the table with data accessor methods */
-	public class Row {
+	public class Row implements Iterable<String> {
 		
 		private org.apache.poi.ss.usermodel.Row row;
 
@@ -97,6 +97,47 @@ public class ExcelTableReader {
 		@Override
 		public String toString() {
 			return Arrays.asList(getValues(String.class)).toString();
+		}
+
+		@Override
+		public Iterator<String> iterator() {
+			return Arrays.asList(getValues(String.class)).iterator();
+		}
+
+		@Override
+		public int hashCode() {
+		    int hashCode = 1;
+		    int columnCount = Math.max(0, getColumnCount() - 1);
+		    for (int i = 0; i < columnCount; i++) {
+		    	String value = getValue(i, String.class);
+		    	hashCode = 31*hashCode + (value == null ? 0 : value.hashCode());
+		    }
+		    return hashCode;
+		}
+
+		@Override
+		public boolean equals(Object obj) {
+			if (this == obj) {
+				return true;
+			}
+			if (obj == null) {
+				return false;
+			}
+			if (getClass() != obj.getClass()) {
+				return false;
+			}
+			Row other = (Row) obj;
+		    int columnCount = Math.max(getColumnCount() - 1, other.getColumnCount() - 1);
+		    for (int i = 0; i < columnCount; i++) {
+		    	if(!CompareUtils.isEqual(getValue(i, String.class), other.getValue(i, String.class))) {
+		    		return false;
+		    	}
+		    }
+			return true;
+		}
+
+		private ExcelTableReader getOuterType() {
+			return ExcelTableReader.this;
 		}
 	}
 
