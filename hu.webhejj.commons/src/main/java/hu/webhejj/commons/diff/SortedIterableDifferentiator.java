@@ -25,6 +25,7 @@ public class SortedIterableDifferentiator<T> implements Differentiator<T> {
 		if(monitor.isCanceled()) {
 			return;
 		}
+		diffHandler.begin();
 		
 		Iterator<T> li = lefts.iterator();
 		Iterator<T> ri = rights.iterator();
@@ -80,5 +81,7 @@ public class SortedIterableDifferentiator<T> implements Differentiator<T> {
 				right = null;
 			}
 		}
+		
+		diffHandler.finish();
 	}
 }

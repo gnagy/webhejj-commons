@@ -24,10 +24,16 @@ public class DiffCollector<T> implements DiffHandler<T> {
 	public DiffCollector(List<Difference<T>> differences) {
 		this.differences = differences;
 	}
+	
+	public void begin() {
+	}
 
 	@Override
 	public void handle(T left, T right, Type type) {
 		differences.add(new Difference<T>(left, right, type));
+	}
+
+	public void finish() {
 	}
 	
 	public List<Difference<T>> getDifferences() {

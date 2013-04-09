@@ -10,6 +10,7 @@ package hu.webhejj.commons.diff;
 
 import java.io.PrintStream;
 import java.util.Arrays;
+import java.util.Iterator;
 
 import hu.webhejj.commons.diff.Difference.Type;
 
@@ -32,6 +33,9 @@ public class DiffPrinter<T> implements DiffHandler<T> {
 		this.types = types;
 		Arrays.sort(types);
 	}
+
+	public void begin() {
+	}
 	
 	@Override
 	public void handle(T left, T right, Type type) {
@@ -39,6 +43,28 @@ public class DiffPrinter<T> implements DiffHandler<T> {
 		if(types != null && Arrays.binarySearch(types, type) < 0) {
 			return;
 		}
-		out.format("%20s %20s %s\n", left, right, type);
+		
+		if(Iterable.class.isAssignableFrom(left.getClass())) {
+			Iterator<?> l = ((Iterable<?>) left).iterator();
+			Iterator<?> r = ((Iterable<?>) right).iterator();
+			
+			out.format("%10s [", type);
+			while(l.hasNext() || r.hasNext()) {
+				if(l.hasNext()) {
+					out.print(l.next());
+				}
+				out.print("->");
+				if(r.hasNext()) {
+					out.print(r.next());
+				}
+				out.print(", ");
+			}
+			out.print("]\n");
+		} else {
+			out.format("%10s %20s %20s\n", type, left, right);
+		}
+	}
+	
+	public void finish() {
 	}
 }

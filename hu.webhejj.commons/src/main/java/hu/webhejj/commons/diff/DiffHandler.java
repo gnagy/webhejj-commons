@@ -10,5 +10,7 @@ package hu.webhejj.commons.diff;
 
 public interface DiffHandler<T> {
 	
+	void begin();
 	void handle(T left, T right, Difference.Type type);
+	void finish();
 }
