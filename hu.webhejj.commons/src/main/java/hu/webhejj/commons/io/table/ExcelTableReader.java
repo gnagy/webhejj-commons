@@ -9,6 +9,7 @@
 package hu.webhejj.commons.io.table;
 
 import hu.webhejj.commons.CompareUtils;
+import hu.webhejj.commons.io.RuntimeIOException;
 
 import java.io.File;
 import java.io.IOException;
@@ -100,12 +101,16 @@ public class ExcelTableReader {
 	private Sheet sheet;
 	private DataFormatter formatter;
 	
-	public ExcelTableReader(File file) throws IOException {
+	public ExcelTableReader(File file) {
 		
-		workbook = ExcelUtils.openWorkbook(file);
-		selectSheet(0);
-		evaluator = workbook.getCreationHelper().createFormulaEvaluator();
-		formatter = new DataFormatter();
+		try {
+			workbook = ExcelUtils.openWorkbook(file);
+			selectSheet(0);
+			evaluator = workbook.getCreationHelper().createFormulaEvaluator();
+			formatter = new DataFormatter();
+		} catch (IOException e) {
+			throw new RuntimeIOException("Error while reading excel file " + file, e);
+		}
 	}
 	
 	public void selectSheet(int index) {
