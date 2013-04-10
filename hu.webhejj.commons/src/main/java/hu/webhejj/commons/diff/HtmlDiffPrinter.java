@@ -15,6 +15,7 @@ import hu.webhejj.commons.xml.XmlWriter;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.Map.Entry;
 
@@ -61,8 +62,8 @@ public class HtmlDiffPrinter<T> implements DiffHandler<T> {
 			out.writeAttribute("class", String.valueOf(type));
 			
 			if(Iterable.class.isAssignableFrom(left.getClass())) {
-				Iterator<?> l = ((Iterable<?>) left).iterator();
-				Iterator<?> r = ((Iterable<?>) right).iterator();
+				Iterator<?> l = left == null ? Collections.emptyIterator() : ((Iterable<?>) left).iterator();
+				Iterator<?> r = right == null ? Collections.emptyIterator() : ((Iterable<?>) right).iterator();
 				
 				out.startElement("td");
 				out.writeText(String.valueOf(type));
