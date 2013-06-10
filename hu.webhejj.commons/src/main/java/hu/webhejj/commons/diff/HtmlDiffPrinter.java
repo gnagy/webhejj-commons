@@ -61,9 +61,9 @@ public class HtmlDiffPrinter<T> implements DiffHandler<T> {
 			out.startElement("tr");
 			out.writeAttribute("class", String.valueOf(type));
 			
-			if(Iterable.class.isAssignableFrom(left.getClass())) {
-				Iterator<?> l = left == null ? Collections.emptyIterator() : ((Iterable<?>) left).iterator();
-				Iterator<?> r = right == null ? Collections.emptyIterator() : ((Iterable<?>) right).iterator();
+			if(left != null && Iterable.class.isAssignableFrom(left.getClass()) || right != null && Iterable.class.isAssignableFrom(right.getClass())) {
+				Iterator<?> l = left == null ? Collections.emptySet().iterator() : ((Iterable<?>) left).iterator();
+				Iterator<?> r = right == null ? Collections.emptySet().iterator() : ((Iterable<?>) right).iterator();
 				
 				out.startElement("td");
 				out.writeText(String.valueOf(type));
