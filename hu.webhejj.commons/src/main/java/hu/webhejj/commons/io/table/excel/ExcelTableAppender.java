@@ -6,7 +6,9 @@
  *
  *  http://www.apache.org/licenses/LICENSE-2.0
  */
-package hu.webhejj.commons.io.table;
+package hu.webhejj.commons.io.table.excel;
+
+import hu.webhejj.commons.io.table.TableAppender;
 
 import org.apache.poi.ss.usermodel.BuiltinFormats;
 import org.apache.poi.ss.usermodel.Cell;

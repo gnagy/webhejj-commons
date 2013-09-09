@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.regex.Pattern;
 
 /**
  * Utility methods for working with collections.
@@ -68,5 +69,14 @@ public class CollectionUtils {
 		} catch (IOException e) {
 			throw new RuntimeException("An error occured while appending", e);
 		}
+	}
+	
+	public static boolean matchesAny(Pattern pattern, Iterable<String> values) {
+		for(String value: values) {
+			if(value != null && pattern.matcher(value).matches()) {
+				return true;
+			}
+		}
+		return false;
 	}
 }
