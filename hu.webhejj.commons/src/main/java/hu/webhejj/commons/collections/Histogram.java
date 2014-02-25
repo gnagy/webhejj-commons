@@ -68,4 +68,18 @@ public class Histogram<T> {
 	public int getSize() {
 		return map.size();
 	}
+	
+	/** @return the total number of items in histogram (sum of all frequencies) */
+	public int getTotal() {
+		int sum = 0;
+		for(Integer f: map.values()) {
+			sum += f;
+		}
+		return sum;
+	}
+	
+	@Override
+	public String toString() {
+		return map.toString();
+	}
 }
