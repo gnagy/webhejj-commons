@@ -1,5 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <parent>
         <groupId>hu.webhejj</groupId>
@@ -9,7 +8,7 @@
 
     <modelVersion>4.0.0</modelVersion>
     <artifactId>webhejj-commons</artifactId>
-    <version>2.0.0-SNAPSHOT</version>
+    <version>2.0.0</version>
     <packaging>jar</packaging>
 
     <description>Webhejj Commons Java utility library</description>
@@ -21,7 +20,7 @@
       <connection>scm:git:https://github.com/webhejj/webhejj-commons.git</connection>
       <developerConnection>scm:git:https://github.com/webhejj/webhejj-commons.git</developerConnection>
       <url>https://github.com/webhejj/webhejj-commons.git</url>
-      <tag>HEAD</tag>
+      <tag>2.0.0</tag>
     </scm>
 
     <dependencies>
