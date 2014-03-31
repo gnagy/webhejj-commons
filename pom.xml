@@ -8,7 +8,7 @@
 
     <modelVersion>4.0.0</modelVersion>
     <artifactId>webhejj-commons</artifactId>
-    <version>2.0.0</version>
+    <version>2.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <description>Webhejj Commons Java utility library</description>
@@ -20,7 +20,7 @@
       <connection>scm:git:https://github.com/webhejj/webhejj-commons.git</connection>
       <developerConnection>scm:git:https://github.com/webhejj/webhejj-commons.git</developerConnection>
       <url>https://github.com/webhejj/webhejj-commons.git</url>
-      <tag>2.0.0</tag>
+      <tag>HEAD</tag>
     </scm>
 
     <dependencies>
