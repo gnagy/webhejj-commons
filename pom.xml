@@ -15,6 +15,14 @@
     <description>Webhejj Commons Java utility library</description>
     <name>Webhejj Commons Library</name>
     <inceptionYear>2012</inceptionYear>
+    <url>https://github.com/webhejj/webhejj-commons</url>
+
+    <scm>
+      <connection>scm:git:https://github.com/webhejj/webhejj-commons.git</connection>
+      <developerConnection>scm:git:https://github.com/webhejj/webhejj-commons.git</developerConnection>
+      <url>https://github.com/webhejj/webhejj-commons.git</url>
+      <tag>HEAD</tag>
+    </scm>
 
     <dependencies>
         <dependency>
